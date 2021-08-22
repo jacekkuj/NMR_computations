@@ -4,7 +4,7 @@ Odpalamy np. z konsoli:
 
 Kujawski_Jacek_NMR_hackathon_3.py paracetamol_DMSO_NMR.log paracetamol_DMSO_NMR.txt
 
-Jako dane eksperymentalne proponuję wpdać (np. dla widma 1H NMR paracetamolu):
+Jako dane eksperymentalne proponuję podać (np. dla widma 1H NMR paracetamolu):
 7.350
 7.350
 6.688
