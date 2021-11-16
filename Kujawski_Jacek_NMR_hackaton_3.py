@@ -24,6 +24,8 @@ import sklearn
 import sklearn.metrics as metrics
 from sklearn.metrics import mean_absolute_error as mae
 import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set_style('whitegrid')
 
 class NMR:
 
@@ -83,16 +85,13 @@ class NMR:
 		print(f"MAE: {MAE} ppm")
 		self.result_file.close()
 
-# Do poprawienia jest wygenerowanie wykresu analizy regresji,
-# tj. analiza statystyczna dla dwóch list:
-# self.computedPeaks oraz self.empiricalPeaks
 	def charts(self):
 		self.computedPeaks = np.array(self.computedPeaks)
 		self.empiricalPeaks = np.array(self.empiricalPeaks)
 		peaks = np.array([self.computedPeaks, self.empiricalPeaks]).flatten()
 		peaks2 = np.array([self.empiricalPeaks, self.computedPeaks]).flatten()
-		peaksCorrCoef = np.corrcoef(peaks, peaks2)[0, 1]
-		chart = plt.figure(spectrum[:-4])
+#		peaksCorrCoef = np.corrcoef(peaks, peaks2)[0, 1]
+#		chart = plt.figure(spectrum[:-4])
 		empiricalScatter = plt.scatter(self.computedPeaks, self.empiricalPeaks, marker='x', color='b')
 		computedScatter = plt.scatter(self.computedPeaks, self.computedPeaks, marker='o', color='g')
 		plt.legend((empiricalScatter, computedScatter),
@@ -103,14 +102,14 @@ class NMR:
 				   fontsize=12)
 		plt.xlabel('Experimental [ppm]')
 		plt.ylabel('Theoretical [ppm]')
-		polyCoeff = np.polyfit(peaks, peaks2, 1)
-		fittedPoly = (self.computedPeaks[:, 1] * polyCoeff[0]) + polyCoeff[1]
-		plt.plot(self.computedPeaks[:, 1], fittedPoly)
-		plt.figtext(0.25, 0.75, 'r^2= %.5f' % (peaksCorrCoef ** 2), fontsize=12)
-		plt.figtext(0.25, 0.8, 'y = %.3fx + %.3f' % (polyCoeff[0], polyCoeff[1]))
+#	polyCoeff = np.polyfit(peaks, peaks2, 1)
+#		fittedPoly = (self.computedPeaks[:, 1] * polyCoeff[0]) + polyCoeff[1]
+#		plt.plot(self.computedPeaks[:, 1], fittedPoly)
+#	plt.figtext(0.25, 0.75, 'r^2= %.5f' % (peaksCorrCoef ** 2), fontsize=12)
+#		plt.figtext(0.25, 0.8, 'y = %.3fx + %.3f' % (polyCoeff[0], polyCoeff[1]))
 		plt.title("NMR correlation")
-		plt.show()
-		chart.savefig(spectrum[:-3] + 'png')
+#	plt.show()
+		plt.savefig(f'{sys.argv[2][0:20]}_NMR.png', dpi=300)
 
 if __name__ == '__main__':
 	nmr = NMR()
@@ -120,5 +119,8 @@ if __name__ == '__main__':
 	nmr.computed_peaks()
 	nmr.writing_results()
 	nmr.charts()
+
+
+
 
 
