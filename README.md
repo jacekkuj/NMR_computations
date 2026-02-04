@@ -13,9 +13,17 @@ A lightweight Streamlit app that:
 - performs peak-level grouping and optional **linear calibration** (Exp vs Calc)
 - reports statistics (MAE, RMSE, R², Pearson/Spearman) and publication-ready plots
 
-## Demo (screenshots)
+## Application interface
 
-> Add your screenshots here (e.g. `docs/img/ui.png`, `docs/img/plots.png`)
+![Assignment UI](docs/img/ui_assignmenttables.png)
+![Assignment UI](docs/img/statistics.png)
+
+
+## Calibration & correlation
+
+![Scatter](docs/img/plot1.png)
+![Residuals](docs/img/plot2.png)
+
 
 ## Installation
 
@@ -25,3 +33,18 @@ python -m venv .venv
 # Windows PowerShell:
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+
+## Scientific background
+
+DFT-computed NMR isotropic shieldings (σ) were converted to chemical shifts using:
+
+δ(¹H) = σ_ref − σ_iso
+
+Linear calibration was performed following common literature practice:
+
+δ_exp = a · δ_calc + b
+
+This approach is widely used in:
+- J. Org. Chem.
+- PCCP
+- J. Chem. Theory Comput.
